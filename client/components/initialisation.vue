@@ -3,6 +3,7 @@
     #register {
         width: 50%;
         min-width: 300px;
+        max-width: 675px;
         height: auto;
         display:block;
     }
@@ -19,16 +20,26 @@
     }
     button {
         color: white;
-        background-color: red;
+        background-color: rgb(69, 69, 190);
         border:none;
+    }
+    button:hover {
+     background-color: cornflowerblue;   
+    }
+    #link {
+        display: block;
+        color: rgb(69, 69, 190);
+        text-align: center;
+        text-decoration: none;
+        font-family: sans-serif;
     }
 </style>
 <template>
     <form id="register" method="POST">
         <input type="text" placeholder="Логин" v-model="username">
         <input type="password" placeholder="Пароль" v-model="password">
-        <input type="password" placeholder="Повторите пароль" v-model="passwordRep">
-        <button type="submit" @click="register">Зарегистироваться</button>
+        <button type="submit" @click="register">Войти</button>
+        <router-link id="link" to="/register">Регистрация</router-link>
     </form>
 </template>
 <script>
@@ -38,13 +49,11 @@
             return {
                 username: "",
                 password: "",
-                passwordRep: ""
             }
         },
         methods: {
         register: function(event) {
 event.preventDefault();
-if(this.password === this.passwordRep) {
 // Блокирует события, связанные с элементом.
 let promise = this.$auth.register(this.username, this.password)
 // Регистрируем пользователя.
@@ -56,12 +65,7 @@ promise.catch(function(){
     this.password = ""
     this.passwordRep = ""
     this.username = ""
-})}
-else {
-    alert("Пароли не совпадают")
-    this.password = ""
-    this.passwordRep = ""
-}
+})
         }
         }
     }
