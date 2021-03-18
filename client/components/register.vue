@@ -5,6 +5,10 @@
         min-width: 300px;
         height: auto;
         display:block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     input, button {
         font-size: 1.1rem;
@@ -50,6 +54,7 @@ let promise = this.$auth.register(this.username, this.password)
 // Регистрируем пользователя.
 promise.then (function(){
     console.log("готово")
+    this.$router.push("/initialisation")
 })
 promise.catch(function(){
     console.log("не повезло")

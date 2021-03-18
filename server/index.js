@@ -11,7 +11,7 @@ const vjmServer = vjm.Server({
 })
 app.post("/auth/register", vjmServer.registerHandler)
 // Post-запрос, вызывающий функции ниже.
-app.post("/auth/register", vjmServer.loginHandler)
+app.post("/auth/logIn", vjmServer.loginHandler)
 app.use(Express.static("client"));
 // При запросе сразу открывается нужная папка.
 app.listen(80);

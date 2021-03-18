@@ -6,6 +6,10 @@
         max-width: 675px;
         height: auto;
         display:block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     input, button {
         font-size: 1.1rem;
@@ -38,7 +42,7 @@
     <form id="register" method="POST">
         <input type="text" placeholder="Логин" v-model="username">
         <input type="password" placeholder="Пароль" v-model="password">
-        <button type="submit" @click="register">Войти</button>
+        <button type="submit" @click="initialisation">Войти</button>
         <router-link id="link" to="/register">Регистрация</router-link>
     </form>
 </template>
@@ -52,19 +56,16 @@
             }
         },
         methods: {
-        register: function(event) {
+        initialisation: function(event) {
 event.preventDefault();
 // Блокирует события, связанные с элементом.
-let promise = this.$auth.register(this.username, this.password)
-// Регистрируем пользователя.
-promise.then (function(){
+this.$auth.logIn(this.username, this.password)
+.then(function(response) {
     console.log("готово")
-})
-promise.catch(function(){
+    this.$router.push("/feed")
+}) 
+.catch(function(response){
     console.log("не повезло")
-    this.password = ""
-    this.passwordRep = ""
-    this.username = ""
 })
         }
         }

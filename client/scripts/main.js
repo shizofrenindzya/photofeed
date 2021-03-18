@@ -6,6 +6,8 @@ const VueJwtMongo = require("vue-jwt-mongo")
 const App = require("../components/app.vue");
 const register = require("../components/register.vue");
 const initialisation = require("../components/initialisation.vue")
+const index = require("../components/index.vue")
+const feed = require("../components/feed.vue")
 Vue.use(VueResourse);
 Vue.use(VueJwtMongo.Client);
 Vue.use(VueRouter);
@@ -18,7 +20,11 @@ let router = new VueRouter({
         component: register        
     },
 {path: "/initialisation",
-component: initialisation}]})
+component: initialisation}, {
+    path: "/", component: index
+}, {
+    path: "/feed", component: feed
+}]})
 // Маршрутизация.    
 let vm = new Vue({
     el: "#root",

@@ -1,13 +1,5 @@
 <style scoped>
-    div, .view {
-        height: 100%;
-        width: 100%;
-    }
-    .view {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+   
 </style>
 <template>
     <div>
