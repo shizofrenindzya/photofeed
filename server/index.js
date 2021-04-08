@@ -9,6 +9,13 @@ const vjmServer = vjm.Server({
     mongoUrl: "mongodb://localhost/photofeed",
     jwtSecret: secret
 })
+const multer = require("multer")
+let UPLOADS = "./server/Pictures";
+let upload = multer({ dest: UPLOADS });
+app.post("/upload", [vjmServer.jwtProtector, upload.single("picture")], function(request, response) {
+    console.log("Получилось");
+    response.sendStatus(200)
+})
 app.post("/auth/register", vjmServer.registerHandler)
 // Post-запрос, вызывающий функции ниже.
 app.post("/auth/logIn", vjmServer.loginHandler)

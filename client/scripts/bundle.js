@@ -609,7 +609,53 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":21,"vue-hot-reload-api":16,"vueify/lib/insert-css":23}],10:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#upld[data-v-3518189f] {\r\nposition: absolute;\r\nleft: 50%;\r\ntop: 50%;\r\ntransform: translate(-50%, -50%); \r\n}\r\n#form[data-v-3518189f] {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    margin-top: 7px;\r\n}\r\n.button[data-v-3518189f] {\r\n    display: none;\r\n}\r\nlabel[data-v-3518189f] {\r\n    padding: 5px;\r\n    background-color: white;\r\n    color: black;\r\n    border: solid black;\r\n    font-size: 20px;\r\n}\r\n#uploadbutton[data-v-3518189f] {\r\n    padding: 5px;\r\n    background-color: white;\r\n    color: black;\r\n    border: solid black;\r\n    font-size: 20px;\r\n}\r\n#uploadbutton[data-v-3518189f]:disabled {\r\n    padding: 5px;\r\n    background-color: white;\r\n    color: gray;\r\n    border: solid gray;\r\n    font-size: 20px;\r\n}\r\nimg[data-v-3518189f] {\r\n    max-height: 640px;\r\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -625,7 +671,8 @@ let nav = require("./navigation.vue")
 module.exports = {
     data: function(){
         return {
-            imageUrl: ""
+            imageUrl: "https://via.placeholder.com/640x480",
+            isDisabled: true
         }
     },
     components: {
@@ -638,17 +685,31 @@ navPenal: nav},
                 self = this;
                 reader = new FileReader();
                 reader.onload = function(readerEvent) {
-                    self.imageUrl = readerEvent.target.result
+                    self.isDisabled = false;
+                    self.imageUrl = readerEvent.target.result;
                 }
                 reader.readAsDataURL(selectedFiles[0])
             }
         },
-        upload: function(event) {
+        uploadd: function(event) {
             event.preventDefault();
+            alert("Зашел в функцию")
+            console.log("зашел в функцию")
             let form = event.target;
             let formData = new FormData(form);
             this.$htpp.post("/upload",formData, {bearer: true})
-            .then(function(){console.log("ничего себе, получилось")});
+            .then(function(){console.log("ничего себе, получилось")})
+            .catch(function(){console.log("ничего себе, не получилось")})
+        },
+        test: function(event) {
+            event.preventDefault();
+            alert("Зашел в функцию")
+            console.log("зашел в функцию")
+            let form = event.target;
+            let formData = new FormData(form);
+            this.$htpp.post("/upload",formData, {bearer: true})
+            .then(function(){console.log("ничего себе, получилось")})
+            .catch(function(){console.log("ничего себе, не получилось")})
         }
     }
 }
@@ -657,19 +718,21 @@ navPenal: nav},
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"main"}},[_c('nav-penal'),_vm._v(" "),_c('img',{attrs:{"src":_vm.imageUrl}}),_vm._v(" "),_c('form',{on:{"sumbit":_vm.upload}},[_c('input',{attrs:{"type":"file","accept":"image/*","name":"picture"},on:{"change":_vm.preview}}),_vm._v(" "),_c('button',{attrs:{"type":"submit"}},[_vm._v("Загрузить")])])],1)}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"main"}},[_c('nav-penal'),_vm._v(" "),_c('div',{attrs:{"id":"upld"}},[_c('img',{attrs:{"src":_vm.imageUrl}}),_vm._v(" "),_c('form',{on:{"sumbit":_vm.uploadd}},[_c('div',{attrs:{"id":"form"}},[_c('label',{attrs:{"for":"select"}},[_vm._v("Выбрать файл")]),_vm._v(" "),_c('input',{staticClass:"button",attrs:{"type":"file","accept":"image/*","name":"picture","id":"select"},on:{"change":_vm.preview}}),_vm._v(" "),_c('button',{attrs:{"id":"uploadbutton","type":"submit","disabled":_vm.isDisabled},on:{"click":_vm.test}},[_vm._v("Загрузить")])])])])],1)}
 __vue__options__.staticRenderFns = []
+__vue__options__._scopeId = "data-v-3518189f"
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-3518189f", __vue__options__)
   } else {
     hotAPI.reload("data-v-3518189f", __vue__options__)
   }
 })()}
-},{"./navigation.vue":8,"vue":21,"vue-hot-reload-api":16}],11:[function(require,module,exports){
+},{"./navigation.vue":8,"vue":21,"vue-hot-reload-api":16,"vueify/lib/insert-css":23}],11:[function(require,module,exports){
 const Vue = require("vue");
 const VueRouter = require("vue-router");
 const VueResourse = require("vue-resource");
